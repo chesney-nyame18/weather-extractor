@@ -1,6 +1,5 @@
 boto3
-# git+ssh://github.com/chesney-nyame18/logging-setup.git
 git+https://github.com/chesney-nyame18/logging-setup.git
-git+https://github.com/chesney-nyame18/aws-sdk.git
+git+https://github.com/chesney-nyame18/aws_sdk.git
 psycopg2-binary
 wheel

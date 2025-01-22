@@ -89,10 +89,4 @@ class FetchWeatherData:
             data = FetchWeatherData._clean_values(response)
             dataset.append(data)
             sleep(1)
-            # print(data)
-        print(dataset)
-            # print(response)
-            
-            
-            # print(postcode)
-        # request = self._weather_request()
+        return dataset

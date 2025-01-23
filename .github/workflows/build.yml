@@ -36,7 +36,6 @@ jobs:
           make requirements-all
           make test
 
-
       - name: Run Make Package
         run: |
           make init
@@ -48,3 +47,9 @@ jobs:
         with:
           name: lambda
           path: pkg/deployment-package.zip
+
+      - name: Publish Coverage Report Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage_report
+          path: coverage_report/**

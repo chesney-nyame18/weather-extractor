@@ -1,0 +1,19 @@
+name: Lambda deploy
+on:
+  workflow_call:
+
+jobs:
+  Deploy-Source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: lambda
+          path: ${{ github.workspace }}/pkg
+
+      # - name: Deploy Source
+      #   run: make deploy-source

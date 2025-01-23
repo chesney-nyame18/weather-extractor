@@ -1,0 +1,20 @@
+name: Lambda deploy
+on:
+  workflow_dispatch:
+    push:
+      branches:
+        - main
+        - feature/*
+        - debug/*
+      paths:
+        - src/**
+jobs:
+  Build:
+    uses: ./.github/build.yml
+    name: Build Artifacts
+
+  Deploy-Source:
+    uses: ./.github/deploy-source.yml
+    name: Deploy Source
+    needs: Build
+    secrets: inherit

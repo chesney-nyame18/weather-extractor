@@ -10,11 +10,11 @@ on:
         - src/**
 jobs:
   Build:
-    uses: ./.github/build.yml
+    uses: ./.github/workflows/build.yml
     name: Build Artifacts
 
   Deploy-Source:
-    uses: ./.github/deploy-source.yml
+    uses: ./.github/workflows/deploy-source.yml
     name: Deploy Source
     needs: Build
     secrets: inherit

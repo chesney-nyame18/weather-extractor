@@ -17,7 +17,7 @@ jobs:
       #   uses: actions/checkout@main
 
       - name: Download Artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: lambda
           path: ${{ github.workspace }}/pkg

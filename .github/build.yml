@@ -1,0 +1,24 @@
+name: Lambda Build
+on:
+  workflow_call:
+  
+  push:
+    branches:
+      - main
+      - feature/*
+      - debug/*
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run Make Package
+        run: make package
+      
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: lambda
+          path: pkg/deployment-package.zip

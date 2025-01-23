@@ -9,7 +9,7 @@ from src.geographic_coordinates import geo_coordinates
 log = logging.getLogger("__main__")
 
 
-class FetchWeatherData:
+class FetchRawWeatherData:
 
     @staticmethod
     def _request(latitude, longitude):
@@ -32,29 +32,31 @@ class FetchWeatherData:
         except Exception as error:
             log.exception(error)
     
+    @staticmethod
     def _fetch_values(weather_details, key, default):
         if key in weather_details:
             return weather_details[key]
         else:
             return default
     
+    @staticmethod
     def _clean_values(weather_details):
         cleansed_data = {}
         try:
-            main = FetchWeatherData._fetch_values(weather_details['weather'][0], 'main', 'Not Provided')
-            description = FetchWeatherData._fetch_values(weather_details['weather'][0], 'description', 'Not Provided')
-            icon = FetchWeatherData._fetch_values(weather_details['weather'][0], 'icon', 'Not Provided')
-            temperature = FetchWeatherData._fetch_values(weather_details['main'], 'temp', 'Not Provided')
-            feel_like_temperature = FetchWeatherData._fetch_values(weather_details['main'], 'feels_like', 'Not Provided')
-            max_temperature = FetchWeatherData._fetch_values(weather_details['main'], 'temp_max', 'Not Provided')
-            min_temperature = FetchWeatherData._fetch_values(weather_details['main'], 'temp_min', 'Not Provided')
-            air_pressure = FetchWeatherData._fetch_values(weather_details['main'], 'pressure', 'Not Provided')
-            humidity = FetchWeatherData._fetch_values(weather_details['main'], 'humidity', 'Not Provided')
-            wind_speed = FetchWeatherData._fetch_values(weather_details['wind'], 'speed', -1)
-            wind_degree = FetchWeatherData._fetch_values(weather_details['wind'], 'deg', -1)
-            sunrise = FetchWeatherData._fetch_values(weather_details['sys'], 'sunrise', 'Not Provided')
-            sunset = FetchWeatherData._fetch_values(weather_details['sys'], 'sunset', 'Not Provided')
-            city = FetchWeatherData._fetch_values(weather_details, 'name', 'Not Provided')
+            main = FetchRawWeatherData._fetch_values(weather_details['weather'][0], 'main', 'Not Provided')
+            description = FetchRawWeatherData._fetch_values(weather_details['weather'][0], 'description', 'Not Provided')
+            icon = FetchRawWeatherData._fetch_values(weather_details['weather'][0], 'icon', 'Not Provided')
+            temperature = FetchRawWeatherData._fetch_values(weather_details['main'], 'temp', 'Not Provided')
+            feel_like_temperature = FetchRawWeatherData._fetch_values(weather_details['main'], 'feels_like', 'Not Provided')
+            max_temperature = FetchRawWeatherData._fetch_values(weather_details['main'], 'temp_max', 'Not Provided')
+            min_temperature = FetchRawWeatherData._fetch_values(weather_details['main'], 'temp_min', 'Not Provided')
+            air_pressure = FetchRawWeatherData._fetch_values(weather_details['main'], 'pressure', 'Not Provided')
+            humidity = FetchRawWeatherData._fetch_values(weather_details['main'], 'humidity', 'Not Provided')
+            wind_speed = FetchRawWeatherData._fetch_values(weather_details['wind'], 'speed', -1)
+            wind_degree = FetchRawWeatherData._fetch_values(weather_details['wind'], 'deg', -1)
+            sunrise = FetchRawWeatherData._fetch_values(weather_details['sys'], 'sunrise', 'Not Provided')
+            sunset = FetchRawWeatherData._fetch_values(weather_details['sys'], 'sunset', 'Not Provided')
+            city = FetchRawWeatherData._fetch_values(weather_details, 'name', 'Not Provided')
             
             cleansed_data['main'] = main
             cleansed_data['description'] = description
@@ -82,11 +84,11 @@ class FetchWeatherData:
             latitude = geo_coordinates[postcode][0]
             longitude = geo_coordinates[postcode][1]
             
-            request = FetchWeatherData._request(latitude, longitude)
-            response = FetchWeatherData._process_request(request)
+            request = FetchRawWeatherData._request(latitude, longitude)
+            response = FetchRawWeatherData._process_request(request)
             
             log.debug(f"fetching weather details for {postcode} at {datetime.now()} ")
-            data = FetchWeatherData._clean_values(response)
+            data = FetchRawWeatherData._clean_values(response)
             dataset.append(data)
             sleep(1)
         return dataset

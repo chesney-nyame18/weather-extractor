@@ -1,4 +1,4 @@
-name: Lambda deploy
+name: Lambda deploy source
 on:
   workflow_dispatch:
     push:

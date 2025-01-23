@@ -90,5 +90,6 @@ class FetchRawWeatherData:
             log.debug(f"fetching weather details for {postcode} at {datetime.now()} ")
             data = FetchRawWeatherData._clean_values(response)
             dataset.append(data)
+            
             sleep(1)
         return dataset

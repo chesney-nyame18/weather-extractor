@@ -18,7 +18,7 @@ jobs:
         run: make package
       
       - name: Publish Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: lambda
           path: pkg/deployment-package.zip

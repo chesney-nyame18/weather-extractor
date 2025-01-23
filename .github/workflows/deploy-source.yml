@@ -6,8 +6,8 @@ jobs:
   Deploy-Source:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      # - name: Checkout
+      #   uses: actions/checkout@main
 
       - name: Download Artifact
         uses: actions/download-artifact@v2

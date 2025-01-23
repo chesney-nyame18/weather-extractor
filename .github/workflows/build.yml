@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,11 +19,12 @@ jobs:
         run: |
           make init
           make requirements-all
+          make test
       
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: test
+          name: coverage_report/**
 
     steps:
       - name: Checkout

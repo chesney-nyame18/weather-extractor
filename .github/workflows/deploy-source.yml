@@ -1,6 +1,13 @@
 name: Lambda deploy
 on:
-  workflow_call:
+  workflow_dispatch:
+    push:
+      branches:
+        - main
+        - feature/*
+        - debug/*
+      paths:
+        - src/**
 
 jobs:
   Deploy-Source:

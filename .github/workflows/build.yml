@@ -15,7 +15,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Make Package
-        run: make package
+        run:
+          make init
+          make requirements-all
+          make package
       
       - name: Publish Artifact
         uses: actions/upload-artifact@v4

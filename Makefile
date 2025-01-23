@@ -19,10 +19,10 @@ requirements-all: requirements
 	[ -f ./tests/requirements.txt ] && pip install -r ./tests/requirements.txt && \
 	[ -f ./requirements.dev.txt ] && pip install -r ./requirements.dev.txt
 
-# test:
-# 	source .venv/bin/activate && \
-# 	coverage run --omit '.venv/*' -m pytest -o junit_suite_name=$(folder_name) --junitxml=./test-results/test-results.xml  -v tests/ && \
-# 	coverage report -m
+test:
+	source .venv/bin/activate && \
+	coverage run --omit '.venv/*' -m pytest -o junit_suite_name=$(folder_name) --junitxml=./test-results/test-results.xml  -v tests/ && \
+	coverage report -m
 
 lint:
 	source .venv/bin/activate && \
@@ -32,7 +32,7 @@ lint:
 clean:
 	rm -rf pkg/ && \
 	rm -f .coverage
-	
+
 package: clean
 	mkdir ./pkg && \
 	cd .venv/lib/python*/ && \

@@ -29,6 +29,10 @@ lint:
 	pip install pylint && \
 	pylint --fail-under=8 ./src ./lambda_function.py
 
+clean:
+	rm -rf pkg/ && \
+	rm -f .coverage
+	
 package: clean
 	mkdir ./pkg && \
 	cd .venv/lib/python*/ && \
@@ -42,9 +46,6 @@ package: clean
 # deploy:
 # 	aws lambda --profile $(ENV)-pinpoint update-function-code --function-name ${ENV}-$(function_name) --zip-file fileb://pkg/deployment-package.zip --publish
 
-# clean:
-# 	rm -rf pkg/ && \
-# 	rm -f .coverage
 
 # clean-all:
 # 	rm -rf .venv/ && \
